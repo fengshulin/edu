@@ -2,7 +2,7 @@ package com.lifeng.constant;
 
 public class WeixinConstants {
 
-	public static final String appid = "wxed0ec3f7d21cc993";
+	public static final String appid = "wxed0ec3f7d21cc993"; 
 	public static final String appsecret = "53ca2dc0ee2038f67db1aa33c190ee87";
 	public static final String token = "lifengedu2018";// token服务器令牌
 
