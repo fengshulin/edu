@@ -1,0 +1,571 @@
+﻿.load {
+  width: 100%;
+  position: relative;
+}
+.load_main {
+  width: 13.525rem;
+  height: 8.075rem;
+  position: absolute;
+  left: 50%;
+  margin-left: -6.763rem;
+  top: 11.4rem;
+}
+.load_logo {
+  width: 10.25rem;
+  height: 3.075rem;
+  background: url(../image/lf_logo.png) no-repeat center bottom;
+  background-size: contain;
+  margin: 0 auto;
+  display: none;
+}
+.load_text {
+  width: 13.525rem;
+  height: 1.375rem;
+  position: relative;
+  margin-top: 1.5rem;
+}
+.load_text span {
+  width: 2.25rem;
+  height: 1.375rem;
+  display: block;
+  position: absolute;
+  top: 0;
+  display: none;
+}
+.load_text span.line_left {
+  background: url(../image/line_left.png) no-repeat center center;
+  background-size: contain;
+  left: 0;
+}
+.load_text span.line_right {
+  background: url(../image/line_right.png) no-repeat center center;
+  background-size: contain;
+  right: 0;
+}
+.load_text p {
+  width: 8rem;
+  height: 1.375rem;
+  background: url(../image/lf_text.png) no-repeat center center;
+  background-size: contain;
+  margin: 0 auto;
+  display: none;
+}
+/*详细*/
+.grey {
+  background: #eeeeee;
+}
+.c92 {
+  color: #929292;
+}
+.c33 {
+  color: #333;
+}
+.c00 {
+  color: #000;
+}
+.part {
+  width: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+  clear: both;
+  background: #fff;
+  padding: 1rem 0 0.5rem;
+}
+.part:last-child {
+  -webkit-box-shadow: none;
+}
+.part_cont {
+  width: 100%;
+  margin-left: 0.9rem;
+}
+.part1_title {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+.part1_title h2 {
+  font-size: 0.95rem;
+  color: #333;
+}
+.part1_title p {
+  width: 17.950rem;
+  height: 0.6rem;
+  color: #ccc;
+  position: absolute;
+  left: 3.4rem;
+  top: 0.3rem;
+}
+.part1_title p {
+  height: 0.6rem;
+  display: block;
+  float: left;
+  font-weight: normal;
+  margin: 0 0.2rem;
+  font-size: 12px;
+  color: #ddd;
+}
+.part1_text {
+  width: 100%;
+  height: 20px;
+  padding-left: 0.5rem;
+  line-height: 20px;
+  font-size: 0.6rem;
+  color: #929292;
+  margin: 0.75rem 0 0.375rem;
+  background: url(../image/dot.png) no-repeat 0 center;
+  background-size: 6px;
+}
+.ad img {
+  width: 100%;
+  display: block;
+}
+.part2_text {
+  font-size: 0.8rem;
+  color: #929292;
+}
+.part2_text table td {
+  height: 2.5rem;
+  vertical-align: middle;
+}
+.part2_text p.select {
+  width: 4.25rem;
+  height: 1.125rem;
+  background: url(../image/select.png) no-repeat;
+  background-size: contain;
+  overflow: hidden;
+}
+.part2_text p.value {
+  margin-left: -1.5rem;
+}
+.part2_text p select {
+  width: 4.25rem;
+  height: 1.125rem;
+  color: #929292;
+  border: none;
+  font-size: 0.75rem;
+  outline: none;
+  padding-left: 0.25rem;
+}
+.part2_text p span:nth-of-type(1) {
+  margin-left: 1.5rem;
+}
+#total {
+  font-size: 1.05rem;
+}
+.part3_main {
+  width: 17.2rem;
+  overflow: hidden;
+  padding-bottom: 1.5rem;
+}
+.part3_title {
+  width: 100%;
+  height: 2.0rem;
+  line-height: 2.0rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+  font-size: 0.75rem;
+  margin-bottom: 1.65rem;
+  background: url(../image/title_bar.jpg) no-repeat left center;
+  background-size: 0.175rem 1.0rem;
+  padding-left: 0.5rem;
+  color: #4d4d4d;
+}
+.part3_main p {
+  color: #666;
+  line-height: 1.2rem;
+  font-size: 0.7rem;
+  margin-bottom: 0.6rem;
+}
+/*帮助*/
+.help {
+  width: 100%;
+}
+.help li {
+  width: 100%;
+  overflow: hidden;
+}
+.help li span {
+  width: 17.875rem;
+  height: 2.5rem;
+  font-size: 0.85rem;
+  line-height: 2.5rem;
+  color: #333;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  display: block;
+  float: right;
+  position: relative;
+}
+.help li span i {
+  width: 0.675rem;
+  height: 0.7rem;
+  display: block;
+  background: url(../image/sub_arrow.png) left bottom no-repeat;
+  background-size: 0.675rem 1.4rem;
+  position: absolute;
+  right: 0.85rem;
+  top: 1.0rem;
+}
+.help li span i.active {
+  width: 0.675rem;
+  height: 0.7rem;
+  display: block;
+  background: url(../image/sub_arrow.png) left top no-repeat;
+  background-size: 0.675rem 1.4rem;
+  position: absolute;
+  right: 0.85rem;
+  top: 1.0rem;
+}
+.help li div {
+  width: 100%;
+  overflow: hidden;
+  border-bottom: 1px solid #cccccc;
+  padding: 0.5rem 0;
+  display: none;
+}
+.help li div p {
+  width: 16.9rem;
+  margin: 0 auto;
+  color: #929292;
+  font-size: 0.75rem;
+  line-height: 1.5rem;
+}
+/*关于我们*/
+.about {
+  width: 15.3rem;
+  margin: 0 auto;
+}
+.about_logo {
+  width: 5rem;
+  height: 5rem;
+  background: url(../image/about_logo.png) no-repeat;
+  background-size: contain;
+  margin: 2.2rem auto;
+}
+.about_main h2 {
+  font-size: 0.9rem;
+  color: #333333;
+  font-weight: normal;
+  margin-bottom: 1.25rem;
+  text-align: center;
+}
+.about_main p {
+  font-size: 0.75rem;
+  color: #666666;
+  line-height: 1.2rem;
+  text-indent: 2em;
+  margin-bottom: 0.9rem;
+  text-align: justify;
+}
+.about_main p.text_right {
+  text-align: right;
+  font-size: 0.7rem;
+  color: #929292;
+  margin-top: 2.5rem;
+}
+.about_main p.text_right a {
+  color: #929292;
+  border-bottom: 1px solid #d2d2d2;
+  padding-bottom: 2px;
+}
+.agreement {
+  width: 15.3rem;
+  margin: 0 auto;
+  padding-top: 0.5rem;
+}
+.agreement h2 {
+  font-size: 0.9rem;
+  color: #333333;
+  font-weight: normal;
+  margin-bottom: 1.0rem;
+  text-align: center;
+}
+.agreement p {
+  font-size: 0.75rem;
+  color: #666666;
+  line-height: 1.2rem;
+  margin-bottom: 0.5rem;
+  text-align: justify;
+}
+.agreement p.text-indent {
+  text-indent: 2em;
+}
+.agreement_link {
+  width: 13rem;
+  height: 2.875em;
+  margin: 0 auto;
+  padding: 2rem 0 0;
+  overflow: hidden;
+}
+.agreement_link a {
+  width: 5.25rem;
+  height: 1.75rem;
+  text-align: center;
+  line-height: 1.75rem;
+  font-size: 0.8rem;
+  border-radius: 0.25rem;
+}
+.agreement_link a:nth-of-type(1) {
+  color: #333;
+  border: 1px solid #808080;
+}
+.agreement_link a:nth-of-type(2) {
+  color: #fff;
+  background: #E85F72;
+  padding: 1px;
+}
+/*跳转页面*/
+.skip_bg {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.skip {
+  width: 15rem;
+  overflow: hidden;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate3d(-50%, -50%, 0);
+}
+.skip img {
+  width: 4.625rem;
+  display: block;
+  margin: 0 auto 1.125rem;
+}
+.skip p {
+  width: 100%;
+  overflow: hidden;
+  text-align: center;
+  color: #333;
+  font-size: 20px;
+}
+.skip a {
+  display: block;
+  width: 9.0rem;
+  height: 2.375rem;
+  margin: 2.375rem auto 0;
+  background: #eb2a4a;
+  text-align: center;
+  line-height: 2.375rem;
+  font-size: 20px;
+  color: #fff;
+  border-radius: 5px;
+}
+.share_main {
+  width: 100%;
+  position: relative;
+}
+.share_main img {
+  width: 100%;
+}
+.share_link {
+  width: 17.5rem;
+  height: 1.975rem;
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  margin-left: -8.75rem;
+}
+.share_link a {
+  width: 8.3rem;
+  height: 1.975rem;
+  display: block;
+  line-height: 1.975rem;
+  color: #fff;
+}
+.share_link a.apple {
+  background: url(../image/btn_apple.png) no-repeat;
+  background-size: contain;
+  font-size: 0.75rem;
+  text-indent: 2.2rem;
+  float: left;
+}
+.share_link a.android {
+  background: url(../image/btn_android.png) no-repeat;
+  background-size: contain;
+  text-indent: 2.0rem;
+  font-size: 0.75rem;
+  text-align: center;
+  float: right;
+}
+.mask {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 999;
+  background: rgba(0, 0, 0, 0.7);
+  left: 0;
+  top: 0;
+  display: none;
+}
+.mask img {
+  width: 12.325rem;
+  position: absolute;
+  right: 1.75rem;
+  top: 1.0rem;
+}
+.zhe {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 999;
+  background: url(../image/load.gif) no-repeat #ffffff center center;
+  background-size: 12.5rem 12.5rem;
+  left: 0;
+  top: 0;
+  display: block;
+}
+.signup_img {
+  width: 100%;
+  height: 16.175rem;
+  background: url(../image/signup_img.jpg) no-repeat center center;
+  background-size: cover;
+}
+.signup_form {
+  width: 271px;
+  margin: 1.5rem auto 0;
+}
+.signup_form div {
+  width: 271px;
+  height: 35px;
+  padding-top: 15px;
+  border-bottom: 1px solid #e7e7e7;
+  position: relative;
+}
+.signup_form div span {
+  height: 100%;
+  height: 20px;
+  line-height: 20px;
+  display: block;
+  float: left;
+  font-size: 16px;
+}
+.signup_form div input {
+  float: left;
+  height: 20px;
+  line-height: 20px;
+  font-size: 14px;
+  font-family: "Microsoft YaHei";
+}
+.signup_form div input.phone {
+  width: 180px;
+}
+.signup_form div input.code {
+  width: 100px;
+}
+.signup_form div .signup_btn {
+  width: 110px;
+  height: 26px;
+  position: absolute;
+  right: 0;
+  top: 11px;
+}
+.signup_form div .signup_btn b {
+  background: #ccc;
+  border-radius: 5px;
+  text-align: center;
+  line-height: 26px;
+  font-size: 12px;
+  font-family: "Microsoft YaHei";
+  color: #fff;
+  display: block;
+  font-weight: 100;
+}
+.signup_form div .signup_btn a {
+  width: 110px;
+  height: 26px;
+  line-height: 26px;
+  font-family: "Microsoft YaHei";
+  font-size: 14px;
+  text-align: center;
+  outline: none;
+  color: #fff;
+  background: #fb797a;
+  border-radius: 5px;
+  display: block;
+}
+.submit {
+  width: 270px;
+  height: 45px;
+  line-height: 45px;
+  font-family: "Microsoft YaHei";
+  font-size: 18px;
+  text-align: center;
+  background: #fb797a;
+  border-radius: 5px;
+  color: #fff;
+  display: block;
+  margin: 30px auto 0;
+}
+.signup_footer {
+  width: 100%;
+  text-align: center;
+  font-size: 14px;
+  margin: 40px 0;
+  color: #b1b1b1;
+}
+.signup_footer a {
+  color: #b1b1b1;
+}
+.success {
+  width: 100%;
+  overflow: hidden;
+}
+.success_head {
+  width: 100%;
+  height: 1.05rem;
+  background: url(../image/success_head.jpg) no-repeat;
+  background-size: cover;
+  color: #e85f72;
+  font-size: 18px;
+  font-weight: 700;
+  text-align: center;
+  padding-top: 6rem;
+}
+.success_body {
+  padding-top: 1.75rem;
+}
+.success_body p {
+  color: #666;
+  font-size: 14px;
+  line-height: 26px;
+  margin-left: 6.0rem;
+}
+.success_body a {
+  width: 210px;
+  height: 38px;
+  background: #63b0ff;
+  margin: 1.5rem auto;
+  display: block;
+  text-align: center;
+  line-height: 38px;
+  color: #fff;
+  font-size: 18px;
+}
+.success_img {
+  width: 17.75rem;
+  margin-left: 1rem;
+  overflow-x: auto;
+}
+.success_img img {
+  height: 15.0rem;
+  display: block;
+}
+.extend_download {
+  width: 100%;
+  background: url(../image/extend_download.jpg) no-repeat #ffd8ad;
+  background-size: 100% 29.15rem;
+  position: relative;
+}
+.extend_download .download_link {
+  width: 295px;
+  background: #f16b7d;
+  height: 48px;
+  position: absolute;
+  left: 50%;
+  margin-left: -147.5px;
+  text-align: center;
+  line-height: 48px;
+  font-size: 23px;
+  color: #fff;
+  bottom: 1.075rem;
+}
