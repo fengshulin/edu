@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="HandheldFriendly" content="True">
+		<meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<meta name="format-detection" content="telephone=no" />
+<script type="text/javascript" src="http://www.lifengedu.com/wx/js/jquery-1.11.3.min.js" ></script>
+<script type="text/javascript" src="http://www.lifengedu.com/wx/js/wx-share.js" ></script>
+<script>
+$(function(){
+	weixin.share("1","2",null,null);
+	$.ajax({
+		type : "get",
+		url : "http://www.lifengedu.com/wx/info/"+getUrlParam("openId"),
+		dataType : "json",
+		async : false,
+		success : function(data) {
+			console.table(data);
+			console.table(data.data.img);
+			$("#nickname").html(data.data.nickname);
+			$("#img").attr("src",data.data.img);
+		}
+	});
+})
+
+function getUrlParam(name)
+{
+var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+if (r!=null) return unescape(r[2]); return null; //返回参数值
+} 
+</script>
+</head>
+<body>
+<label id="nickname"></label><br>
+<img alt="" src="" id="img" width="80">
+</body>
+</html>
