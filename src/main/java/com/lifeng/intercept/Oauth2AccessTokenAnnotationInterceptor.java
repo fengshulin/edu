@@ -24,6 +24,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.lifeng.constant.WeixinConstants;
 import com.lifeng.service.WxService;
+import com.lifeng.util.EmojiFilter;
 import com.lifeng.util.IPUtils;
 import com.lifeng.util.RequestUtil;
 
@@ -88,21 +89,16 @@ public class Oauth2AccessTokenAnnotationInterceptor extends HandlerInterceptorAd
 		logger.info("缓存中微信openId:{}", openId);
 		String requestURL = request.getRequestURL().toString();
 		logger.info("授权请求路径:{}", requestURL);
-		if (requestURL.contains("lilfengedu.cn") || requestURL.contains("lilfengedu.com")) {
-			requestURL = requestURL.replace(requestURL.substring(0, requestURL.indexOf(":")), "https");
-		}
 
 		// 首先验证缓存中是否存在openid，如果为空进行授权，反则直接跳过
 		if (StringUtils.isBlank(openId)) {
 			String code = request.getParameter("code");
-
 			// 获取请求参数，移除code和state
 			String requestParammStr = RequestUtil.getRequestOauthParammStr(request);
 			String redirectUrl = requestURL.replace(";", ",");
 			if (!StringUtils.isEmpty(requestParammStr)) {
 				redirectUrl += "?" + requestParammStr;
 			}
-
 			// 验证code是否为空（第一步：用户同意授权，获取code）
 			if (StringUtils.isNotBlank(code)) {
 				long tokenTime = System.currentTimeMillis();
@@ -208,7 +204,10 @@ public class Oauth2AccessTokenAnnotationInterceptor extends HandlerInterceptorAd
 			JSONObject object = JSON.parseObject(result);
 			boolean containsKey = object.containsKey("errcode");
 			if (!containsKey) {
-
+				String img = object.getString("headimgurl");
+				String nickname = EmojiFilter.filterEmoji(object.getString("nickname"));
+				WebUtils.setSessionAttribute(request, openId + "_img", img);
+				WebUtils.setSessionAttribute(request, openId + "_nickname", nickname);
 			}
 		}
 	}

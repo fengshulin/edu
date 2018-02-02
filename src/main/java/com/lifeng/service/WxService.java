@@ -25,12 +25,12 @@ public class WxService {
 	 */
 
 	public String getOauth2AccessToken(String appid, String appsecret, String code) {
-		logger.info("geta服务getOauth2AccessToken请求参数 appid:{},appsecret:{},code:{}", appid, appsecret, code);
+		logger.info("WxService服务getOauth2AccessToken请求参数 appid:{},appsecret:{},code:{}", appid, appsecret, code);
 		StringBuilder sb = new StringBuilder();
 		sb.append("appid=").append(appid).append("&secret=").append(appsecret).append("&code=").append(code)
 				.append("&grant_type=").append("authorization_code");
 		String content = HttpClientUtil.sendGet(WeixinConstants.oauth2AccessTokenUrl, sb.toString());
-		logger.info("geta服务wxServiceFacade 返回结果:{}", content);
+		logger.info("WxService服务wxServiceFacade 返回结果:{}", content);
 		return content;
 	}
 
@@ -39,7 +39,7 @@ public class WxService {
 	 */
 
 	public String getOauth2UserInfo(String accessToken, String openId) {
-		logger.info("geta服务getOauth2UserInfo请求参数 accessToken:{},openId:{}", accessToken, openId);
+		logger.info("WxService服务getOauth2UserInfo请求参数 accessToken:{},openId:{}", accessToken, openId);
 		StringBuilder sb = new StringBuilder();
 		sb.append("access_token=");
 		sb.append(accessToken);
@@ -47,7 +47,7 @@ public class WxService {
 		sb.append(openId);
 		sb.append("&lang=zh_CN");
 		String content = HttpClientUtil.sendGet(WeixinConstants.userInfoUrl, sb.toString());
-		logger.info("geta服务getOauth2UserInfo 返回结果:{}", content);
+		logger.info("WxService服务getOauth2UserInfo 返回结果:{}", content);
 		return content;
 	}
 
@@ -65,12 +65,12 @@ public class WxService {
 			if (StringUtils.isNotBlank(time)) {
 				long oldTime = Long.valueOf(time);
 				if (new Date().getTime() - oldTime > 60 * 60 * 1000) {
-					logger.info("geta服务getAccessToken请求参数 appid:{},appsecret:{}", lfappid, lfappsecret);
+					logger.info("WxService服务getAccessToken请求参数 appid:{},appsecret:{}", lfappid, lfappsecret);
 					StringBuilder sb = new StringBuilder();
 					sb.append("grant_type=").append("client_credential").append("&appid=").append(lfappid)
 							.append("&secret=").append(lfappsecret);
 					String content = HttpClientUtil.sendGet(WeixinConstants.tokenUrl, sb.toString());
-					logger.info("geta服务getAccessToken 返回结果:{}", content);
+					logger.info("WxService服务getAccessToken 返回结果:{}", content);
 					JSONObject obj = JSON.parseObject(content);
 					accessToken = (String) obj.get("access_token");
 					if (StringUtils.isNotBlank(accessToken)) {
@@ -135,19 +135,20 @@ public class WxService {
 	 */
 
 	public String getApiTicket(String accessToken) {
-		logger.info("geta服务getApiTicket请求参数 accessToken:{}", accessToken);
+		logger.info("WxService服务getApiTicket请求参数 accessToken:{}", accessToken);
 		StringBuilder sb = new StringBuilder();
 		sb.append("access_token=");
 		sb.append(accessToken);
 		sb.append("&type=");
 		sb.append("jsapi");
 		String content = HttpClientUtil.sendGet(WeixinConstants.jsApiTicketUrl, sb.toString());
-		logger.info("geta服务getApiTicket 返回结果:{}", content);
+		logger.info("WxService服务getApiTicket 返回结果:{}", content);
 		return content;
 	}
 
-	public String getUserInfo(String accessToken, String openId) {
-		logger.info("geta服务getUserInfo请求参数 accessToken:{},openId:{}", accessToken, openId);
+	public String getUserInfo(String openId) {
+		String accessToken = getAccessToken(WeixinConstants.appid, WeixinConstants.appsecret);
+		logger.info("WxService服务getUserInfo请求参数 accessToken:{},openId:{}", accessToken, openId);
 		StringBuilder sb = new StringBuilder();
 		sb.append("access_token=");
 		sb.append(accessToken);
@@ -155,7 +156,7 @@ public class WxService {
 		sb.append(openId);
 		sb.append("&lang=zh_CN");
 		String content = HttpClientUtil.sendGet(WeixinConstants.cgiuserInfoUrl, sb.toString());
-		logger.info("geta服务getUserInfo 返回结果:{}", content);
+		logger.info("WxService服务getUserInfo 返回结果:{}", content);
 		return content;
 	}
 
@@ -168,11 +169,11 @@ public class WxService {
 	 */
 
 	public String createQrcode(String accessToken, String content) {
-		logger.info("geta服务createQrcode请求参数 accessToken:{},sence:{}", accessToken, content);
+		logger.info("WxService服务createQrcode请求参数 accessToken:{},sence:{}", accessToken, content);
 		StringBuilder sb = new StringBuilder(WeixinConstants.qrcodeUrl);
 		sb.append(accessToken);
 		String result = HttpClientUtil.sendPost(sb.toString(), content);
-		logger.info("geta服务createQrcode 返回结果:{}", result);
+		logger.info("WxService服务createQrcode 返回结果:{}", result);
 		return result;
 	}
 

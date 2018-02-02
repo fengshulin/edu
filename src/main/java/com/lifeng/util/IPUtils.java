@@ -1,7 +1,8 @@
 package com.lifeng.util;
 
-import javax.servlet.http.HttpServletRequest;
 import java.net.InetAddress;
+
+import javax.servlet.http.HttpServletRequest;
 
 public class IPUtils {
 	/**
