@@ -23,8 +23,8 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 public class XmlUtil {
-	private static String xmlPath = "/usr/local/lifeng/webapps/wxfile/join.xml";
-//	 private static String xmlPath = "/Users/solin/test.xml";
+//	private static String xmlPath = "/usr/local/lifeng/webapps/wxfile/join.xml";
+	 private static String xmlPath = "/Users/solin/test.xml";
 
 	public static List<Map<String, String>> getAllMemebers() {
 		/*

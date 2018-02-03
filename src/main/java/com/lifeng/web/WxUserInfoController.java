@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.util.WebUtils;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.lifeng.constant.WeixinConstants;
 import com.lifeng.intercept.NeedOpenId;
 import com.lifeng.service.WxService;
@@ -61,13 +62,23 @@ public class WxUserInfoController {
 				return JSON.toJSONString(content);
 			}
 
-			String nickname = (String) WebUtils.getSessionAttribute(request, openId + "_nickname");
-			String img = (String) WebUtils.getSessionAttribute(request, openId + "_img");
-			if (StringUtils.isBlank(nickname) && StringUtils.isBlank(img)) {
+			// String nickname = (String) WebUtils.getSessionAttribute(request, openId +
+			// "_nickname");
+			// String img = (String) WebUtils.getSessionAttribute(request, openId + "_img");
+			// if (StringUtils.isBlank(nickname) && StringUtils.isBlank(img)) {
+			// content = new ReturnContent<Map<String, Object>>("99", "用户信息不存在", returnMap);
+			// } else {
+			// returnMap.put("img", img);
+			// returnMap.put("nickname", nickname);
+			// content = new ReturnContent<Map<String, Object>>("00", "success", returnMap);
+			// }
+			String result = wxService.getUserInfo(openId);
+			if (StringUtils.isBlank(result)) {
 				content = new ReturnContent<Map<String, Object>>("99", "用户信息不存在", returnMap);
 			} else {
-				returnMap.put("img", img);
-				returnMap.put("nickname", nickname);
+				JSONObject jsonObject = JSON.parseObject(result);
+				returnMap.put("headimgurl", jsonObject.get("headimgurl"));
+				returnMap.put("nickname", jsonObject.get("nickname"));
 				content = new ReturnContent<Map<String, Object>>("00", "success", returnMap);
 			}
 		} catch (Exception e) {
@@ -108,7 +119,7 @@ public class WxUserInfoController {
 	 * @param request
 	 * @return
 	 */
-	@RequestMapping("join/add")
+	@RequestMapping(value = "join/add", produces = "application/json;charset=utf-8")
 	public @ResponseBody String add(HttpServletRequest request) {
 		ReturnContent<Map<String, Object>> content = null;
 		Map<String, Object> returnMap = new HashMap<>();
@@ -163,6 +174,12 @@ public class WxUserInfoController {
 		return JSON.toJSONString(content);
 	}
 
+	/**
+	 * 获取抽签列表
+	 * 
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping("join/list")
 	public @ResponseBody String list(HttpServletRequest request) {
 		List<Map<String, String>> list = null;
