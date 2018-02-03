@@ -1,6 +1,10 @@
 package com.lifeng.util;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -20,43 +24,50 @@ import org.w3c.dom.NodeList;
 
 public class XmlUtil {
 	private static String xmlPath = "/usr/local/lifeng/webapps/wxfile/join.xml";
+//	 private static String xmlPath = "/Users/solin/test.xml";
 
-	public static void getAllMemebers() {
+	public static List<Map<String, String>> getAllMemebers() {
 		/*
 		 * 创建文件工厂实例
 		 */
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 		// 如果创建的解析器在解析XML文档时必须删除元素内容中的空格，则为true，否则为false
 		dbf.setIgnoringElementContentWhitespace(true);
+		List<Map<String, String>> list = new ArrayList<Map<String, String>>();
 		try {
 			/*
 			 * 创建文件对象
 			 */
 			DocumentBuilder db = dbf.newDocumentBuilder();// 创建解析器，解析XML文档
 			Document doc = db.parse(xmlPath); // 使用dom解析xml文件
-
 			/*
 			 * 历遍列表，进行XML文件的数据提取
 			 */
 			// 根据节点名称来获取所有相关的节点
 			NodeList sonlist = doc.getElementsByTagName("user");
+			System.out.println("sonlist:" + sonlist.getLength());
 			for (int i = 0; i < sonlist.getLength(); i++) // 循环处理对象
 			{
 				// 节点属性的处理
 				Element son = (Element) sonlist.item(i);
+				Map<String, String> map = null;
 				// 循环节点son内的所有子节点
+				map = new HashMap<>();
 				for (Node node = son.getFirstChild(); node != null; node = node.getNextSibling()) {
 					// 判断是否为元素节点
 					if (node.getNodeType() == Node.ELEMENT_NODE) {
 						String name = node.getNodeName();
 						String value = node.getFirstChild().getNodeValue();
 						System.out.println(name + " : " + value);
+						map.put(name, value);
 					}
 				}
+				list.add(map);
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
+		return list;
 	}
 
 	public static boolean getById(String id) {
@@ -108,7 +119,7 @@ public class XmlUtil {
 	}
 
 	// 获取目标节点，进行删除，最后保存
-	public static void discardUser() {
+	public static void deleteUser(String id) {
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 		dbf.setIgnoringElementContentWhitespace(true);
 		try {
@@ -117,7 +128,7 @@ public class XmlUtil {
 			// 获取根节点
 			Element root = xmldoc.getDocumentElement();
 			// 定位根节点中的id=002的节点
-			Element son = (Element) selectSingleNode("/result/user[@id='002']", root);
+			Element son = (Element) selectSingleNode("/result/user[@id='" + id + "']", root);
 			// 删除该节点
 			root.removeChild(son);
 			// 保存
@@ -180,11 +191,11 @@ public class XmlUtil {
 
 	// 打印
 	public static void main(String[] args) {
-		String openId = "1234";
-		boolean result = getById(openId);
-		if (!result) {
-			createUser("一等奖", openId);
-		}
+		// String openId = "1234";
+		// boolean result = getById(openId);
+		// if (!result) {
+		// createUser("一等奖", openId);
+		// }
 		// System.out.println(result);
 		// modifySon();
 		// System.out.println("修改数据");
@@ -192,6 +203,7 @@ public class XmlUtil {
 		// System.out.println("删除数据");
 		// createSon();
 		// System.out.println("添加数据");
+		deleteUser("1234");
 	}
 
 }

@@ -1,6 +1,7 @@
 package com.lifeng.web;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -82,7 +83,7 @@ public class WxUserInfoController {
 	 * @param request
 	 * @return
 	 */
-	@RequestMapping("check")
+	@RequestMapping("join/check")
 	public @ResponseBody String check(HttpServletRequest request) {
 		ReturnContent<Map<String, Object>> content = null;
 		String openId = request.getParameter("openId");
@@ -107,7 +108,7 @@ public class WxUserInfoController {
 	 * @param request
 	 * @return
 	 */
-	@RequestMapping("add")
+	@RequestMapping("join/add")
 	public @ResponseBody String add(HttpServletRequest request) {
 		ReturnContent<Map<String, Object>> content = null;
 		Map<String, Object> returnMap = new HashMap<>();
@@ -116,20 +117,60 @@ public class WxUserInfoController {
 			String openId = request.getParameter("openId");
 			if (StringUtils.isBlank(openId)) {
 				content = new ReturnContent<Map<String, Object>>("99", "openId不能为空");
-			} else {
-				boolean result = XmlUtil.getById(openId);
-				if (!result) {
-					logger.info("首次创建:{}", openId);
-					XmlUtil.createUser(name, openId);
-				} else {
-					logger.info("已经存在:{}", openId);
-				}
-				content = new ReturnContent<Map<String, Object>>("00", "创建成功");
+				return JSON.toJSONString(content);
 			}
+			if (StringUtils.isBlank(name)) {
+				content = new ReturnContent<Map<String, Object>>("99", "运势参数不能为空");
+				return JSON.toJSONString(content);
+			}
+			boolean result = XmlUtil.getById(openId);
+			if (!result) {
+				logger.info("首次创建:{}", openId);
+				XmlUtil.createUser(name, openId);
+			} else {
+				logger.info("已经存在:{}", openId);
+			}
+			content = new ReturnContent<Map<String, Object>>("00", "创建成功");
 		} catch (Exception e) {
 			e.printStackTrace();
 			content = new ReturnContent<Map<String, Object>>("99", "系统异常", returnMap);
 		}
 		return JSON.toJSONString(content);
+	}
+
+	/**
+	 * 删除抽签记录
+	 * 
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping("join/delete")
+	public @ResponseBody String delete(HttpServletRequest request) {
+		ReturnContent<Map<String, Object>> content = null;
+		Map<String, Object> returnMap = new HashMap<>();
+		try {
+			String openId = request.getParameter("openId");
+			if (StringUtils.isBlank(openId)) {
+				content = new ReturnContent<Map<String, Object>>("99", "openId不能为空");
+				return JSON.toJSONString(content);
+			}
+			XmlUtil.deleteUser(openId);
+			content = new ReturnContent<Map<String, Object>>("00", "删除成功");
+		} catch (Exception e) {
+			e.printStackTrace();
+			content = new ReturnContent<Map<String, Object>>("99", "系统异常", returnMap);
+		}
+		return JSON.toJSONString(content);
+	}
+
+	@RequestMapping("join/list")
+	public @ResponseBody String list(HttpServletRequest request) {
+		List<Map<String, String>> list = null;
+		try {
+			list = XmlUtil.getAllMemebers();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return JSON.toJSONString(list);
 	}
 }
