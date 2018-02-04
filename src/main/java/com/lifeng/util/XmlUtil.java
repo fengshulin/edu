@@ -23,8 +23,8 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 public class XmlUtil {
-//	private static String xmlPath = "/usr/local/lifeng/webapps/wxfile/join.xml";
-	 private static String xmlPath = "/Users/solin/test.xml";
+	private static String xmlPath = "/usr/local/lifeng/webapps/wxfile/join.xml";
+	// private static String xmlPath = "/Users/solin/test.xml";
 
 	public static List<Map<String, String>> getAllMemebers() {
 		/*
@@ -70,7 +70,7 @@ public class XmlUtil {
 		return list;
 	}
 
-	public static boolean getById(String id) {
+	public static String getById(String id) {
 		// 创建文件工厂实例
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 		dbf.setIgnoringElementContentWhitespace(true);
@@ -83,13 +83,16 @@ public class XmlUtil {
 			// 获取根节点
 			Element root = xmldoc.getDocumentElement();
 			Element per = (Element) selectSingleNode("/result/user[@id='" + id + "']", root);
+			System.out.println(per);
 			if (per == null) {
-				return false;
+				return null;
 			}
+			String name = per.getElementsByTagName("name").item(0).getTextContent();
+			return name;
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
-		return true;
+		return null;
 	}
 
 	// 修改
@@ -203,7 +206,7 @@ public class XmlUtil {
 		// System.out.println("删除数据");
 		// createSon();
 		// System.out.println("添加数据");
-		deleteUser("1234");
+		getById("xxx");
 	}
 
 }
