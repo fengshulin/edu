@@ -3,7 +3,6 @@ package com.lifeng.web;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Arrays;
-import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -21,7 +20,7 @@ import com.lifeng.constant.WeixinConstants;
 import com.lifeng.entity.WxJssdkConfig;
 import com.lifeng.service.WxService;
 import com.lifeng.util.DigestUtils;
-import com.lifeng.util.MessageUtil;
+import com.lifeng.web.wx.WeixinRequestDealer;
 
 @Controller
 public class WxController {
@@ -30,6 +29,8 @@ public class WxController {
 
 	@Resource
 	private WxService wxService;
+	@Resource
+	private WeixinRequestDealer weixinRequestDealer;
 
 	/**
 	 * @Description 接收微信普通消息/事件推送-
@@ -41,16 +42,8 @@ public class WxController {
 	@RequestMapping(value = "wxNotice", method = RequestMethod.POST)
 	public @ResponseBody void receiveMessagePost(HttpServletRequest request, HttpServletResponse response)
 			throws IOException {
-		try {
-			Map<String, String> requestMap = MessageUtil.parseXml(request);
-			logger.info("请求参数：{}", JSON.toJSONString(requestMap));
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
 		// 微信消息处理
-		String respMessage = "success";
+		String respMessage = weixinRequestDealer.getMessage(request);
 		logger.info("微信回复消息:{}", respMessage);
 
 		// 响应消息
@@ -91,7 +84,7 @@ public class WxController {
 			logger.error("微信验证服务器地址的有效性，服务异常:{}", e.getMessage());
 			e.printStackTrace();
 		}
-		
+
 		return "ERROR";
 	}
 

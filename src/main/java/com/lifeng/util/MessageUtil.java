@@ -12,6 +12,8 @@ import org.dom4j.Document;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
+import com.lifeng.web.wx.Article;
+import com.lifeng.web.wx.NewsMessage;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.core.util.QuickWriter;
 import com.thoughtworks.xstream.io.HierarchicalStreamWriter;
@@ -102,6 +104,19 @@ public class MessageUtil {
 	 */
 	public static final String TEMPLATE_SEND_JOB_FINISH = "TEMPLATESENDJOBFINISH";
 
+	
+	/**
+	 * 图消息对象转换成xml
+	 * 
+	 * @param newsMessage
+	 *            图文消息对象
+	 * @return xml
+	 */
+	public static String newsMessageToXml(NewsMessage newsMessage) {
+		xstream.alias("xml", newsMessage.getClass());
+		xstream.alias("item", new Article().getClass());
+		return xstream.toXML(newsMessage);
+	}
 	/**
 	 * 解析微信发来的请求（XML）
 	 * 

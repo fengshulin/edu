@@ -43,7 +43,7 @@ public class WxUserInfoController {
 		response.setHeader("Access-Control-Allow-Origin", "*");
 		String openId = (String) WebUtils.getSessionAttribute(request, WeixinConstants.sessionOpenIdKey);
 		logger.info("home/openId:{}", openId);
-		String redirectUrl = "http://www.lifengedu.com/wx/html/index.html?openId=" + openId;
+		String redirectUrl = "http://www.lifengedu.com/wx/html/chouqian/index.html?openId=" + openId;
 		return "redirect:" + redirectUrl;
 	}
 
